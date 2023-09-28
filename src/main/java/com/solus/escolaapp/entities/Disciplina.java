@@ -1,6 +1,9 @@
 package com.solus.escolaapp.entities;
 
 import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
@@ -49,6 +52,7 @@ public class Disciplina {
         this.professor = professor;
     }
 
+    @JsonIgnore
     public Set<Turma> getTurmas() {
         return turmas;
     }
