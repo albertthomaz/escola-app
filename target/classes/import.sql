@@ -15,6 +15,8 @@ INSERT INTO evento_calendario(id_turma, descricao, data) VALUES (1, 'Prova de Ge
 
 INSERT INTO material_complementar(id_disciplina, descricao, conteudo) VALUES (4, 'Segunda Guerra Mundial', 'TESTE_MATERIAL_COMPLEMENTAR');
 
+INSERT INTO atividade(id_disciplina, id_aluno, descricao, prazo, resposta, nota) VALUES (4, 1, 'Segunda Guerra Mundial', '2023-10-29 22:00:00', 'TESTE_ATIVIDADE', NULL);
+
 --SELECT * FROM DISCIPLINA;
 --SELECT * FROM PROFESSOR;
 --SELECT * FROM TURMA;
@@ -22,3 +24,4 @@ INSERT INTO material_complementar(id_disciplina, descricao, conteudo) VALUES (4,
 --SELECT * FROM ALUNO;
 --SELECT * FROM EVENTO_CALENDARIO;
 --SELECT * FROM MATERIAL_COMPLEMENTAR;
+--SELECT * FROM ATIVIDADE;

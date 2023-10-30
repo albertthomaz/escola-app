@@ -10,7 +10,7 @@ import com.solus.escolaapp.entities.EventoCalendario;
 import com.solus.escolaapp.repositories.EventoCalendarioRepository;
 
 @RestController
-@RequestMapping(value = "/evento_calendario")
+@RequestMapping(value = "/eventos_calendario")
 public class EventoCalendarioController {
 
     @Autowired

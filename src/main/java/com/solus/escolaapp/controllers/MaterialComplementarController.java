@@ -10,7 +10,7 @@ import com.solus.escolaapp.entities.MaterialComplementar;
 import com.solus.escolaapp.repositories.MaterialComplementarRepository;
 
 @RestController
-@RequestMapping(value = "/material_complementar")
+@RequestMapping(value = "/materiais_complementares")
 public class MaterialComplementarController {
 
     @Autowired
