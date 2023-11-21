@@ -1,4 +1,4 @@
-INSERT INTO professor(nome) VALUES ('Carlos Baffi');
+INSERT INTO professor(matricula, senha, nome) VALUES (1, '$2a$10$S55c6e/ax8WpaXWl.FARieu3V.p45GZjpuokh51alz2bkGol48Spa', 'Carlos Baffi'); --senha 'adm'
 
 INSERT INTO disciplina(id_professor, nome) VALUES (1, 'Matematica');
 INSERT INTO disciplina(id_professor, nome) VALUES (1, 'Portugues');
@@ -8,8 +8,8 @@ INSERT INTO disciplina(id_professor, nome) VALUES (1, 'Historia');
 INSERT INTO turma(nome) VALUES ('Ensino Medio - Terceiro Ano');
 INSERT INTO turma_disciplina(id_turma, id_disciplina) VALUES (1, 1);
 
-INSERT INTO aluno(id_turma, nome) VALUES (1, 'Albert Thomaz');
-INSERT INTO aluno(id_turma, nome) VALUES (1, 'Matheus Morais');
+INSERT INTO aluno(matricula, senha, id_turma, nome) VALUES (2,'123', 1, 'Albert Thomaz');
+INSERT INTO aluno(matricula, senha, id_turma, nome) VALUES (3,'123', 1, 'Matheus Morais');
 
 INSERT INTO evento_calendario(id_turma, descricao, data) VALUES (1, 'Prova de Geografia', '2023-11-02 08:00:00');
 
