@@ -15,7 +15,6 @@ import com.solus.escolaapp.entities.Usuario;
 import com.solus.escolaapp.entities.dto.LoginDTO;
 import com.solus.escolaapp.entities.dto.LoginResponseDTO;
 import com.solus.escolaapp.infra.security.TokenService;
-import com.solus.escolaapp.repositories.AlunoRepository;
 import com.solus.escolaapp.repositories.ProfessorRepository;
 
 import jakarta.validation.Valid;
@@ -29,12 +28,10 @@ public class AutenticacaoController {
     @Autowired
     private TokenService _tokenService;
     @Autowired
-    private AlunoRepository _alunoRepository;
-    @Autowired
     private ProfessorRepository _professorRepository;
 
     @PostMapping(value = "/login")
-    public ResponseEntity login(@RequestBody @Valid LoginDTO dto) {
+    public ResponseEntity<?> login(@RequestBody @Valid LoginDTO dto) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(dto.matricula(), dto.senha());
         var auth = this._authenticationManager.authenticate(usernamePassword);
 
@@ -45,7 +42,7 @@ public class AutenticacaoController {
     }
 
     @PostMapping(value = "/registrar")
-    public ResponseEntity registrar(@RequestBody @Valid LoginDTO dto) {
+    public ResponseEntity<?> registrar(@RequestBody @Valid LoginDTO dto) {
 
         Professor professor = new Professor();
         professor.setMatricula(dto.matricula());

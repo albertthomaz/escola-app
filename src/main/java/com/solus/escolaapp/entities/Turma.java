@@ -22,6 +22,13 @@ public class Turma {
     @JoinTable(name = "turma_disciplina", joinColumns = @JoinColumn(name = "id_turma"), inverseJoinColumns = @JoinColumn(name = "id_disciplina"))
     private Set<Disciplina> disciplinas;
 
+    public Turma() {
+    }
+
+    public Turma(long idTurma) {
+        this.id = idTurma;
+    }
+
     public long getId() {
         return id;
     }

@@ -1,6 +1,9 @@
 package com.solus.escolaapp.entities;
 
 import java.util.Date;
+
+import com.solus.escolaapp.entities.dto.EventoCalendarioDTO;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
@@ -24,6 +27,12 @@ public class EventoCalendario {
     private String descricao;
 
     public EventoCalendario() {
+    }
+
+    public EventoCalendario(EventoCalendarioDTO dto) {
+        this.data = dto.data();
+        this.descricao = dto.descricao();
+        this.turma = new Turma(dto.idTurma());
     }
 
     public long getId() {
