@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+:root {
+	--primary-color: #30AFB4;
+	--secondary-color: #9E9E9E;
+	--error-color: #b50706;
+	--success-color: #28a745;
+	--dark-color: #263238;
+	--light-color: #F5F5F5;
+}
+
+body {
+	position: relative;
+	font-family: 'Open Sans', sans-serif;
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	overflow-x: hidden;
+}
+
+div {
+	height: 100%;
+}
+
+button {
+	background-color: var(--primary-color);
+	color: white;
+	border: none;
+	padding: 12px 25px;
+	-webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+	box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+	border-radius: 2px;
+	outline: none;
+}
+
+button:hover {
+	opacity: 0.9;
+	cursor: pointer;
+}
+
+button.btn-remove {
+	background-color: var(--error-color);
+	cursor: pointer;
+}
+
+button.btn-success {
+	background-color: var(--success-color);
+	cursor: pointer;
+}
+
+.no-hover {
+	pointer-events: none;
+}
+
+a {
+	color: var(--primary-color);
+	font-size: 12px;
+	text-decoration: none;
+}
+
+a:hover {
+	opacity: 0.9;
+	font-size: 12px;
+	text-decoration: underline;
+}
+
+.mt-15 {
+	margin-top: 15px;
+}
