@@ -17,3 +17,7 @@ export function fetchTurmas() {
 export function fetchEventos(turmaId) {
   return axios(`${API_URL}/eventos_calendario?turmaId=${turmaId}`);
 }
+
+export function salvarEvento(evento) {
+  return axios.post(`${API_URL}/eventos_calendario`, evento);
+}

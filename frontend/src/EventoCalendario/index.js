@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { fetchTurmas, fetchEventos } from "../api";
+import { getUsuarioLogado } from "../util";
 import "./styles.css";
 
 function EventoCalendario() {
   const [turmas, setTurmas] = useState([]);
   const [eventos, setEventos] = useState([]);
+  const isAdmin = getUsuarioLogado().role === "ADMIN";
 
   useEffect(() => {
     fetchTurmas()
@@ -23,16 +25,20 @@ function EventoCalendario() {
       });
   };
 
+  const redirectToCalendario = () => {
+    window.location.href = "/app/eventos_calendario/novo";
+  };
+
   return (
     <div>
-      <div className="home-row">
+      <div className="row">
         <h1>Calendário Acadêmico</h1>
       </div>
 
-      <div className="home-row">
+      <div className="row">
         <div className="select">
           <select onChange={preencherCalendario}>
-            <option>Selecione...</option>
+            <option>Selecione a Turma...</option>
             {turmas.map((turma, key) => {
               return (
                 <option id={turma.id} key={key}>
@@ -42,12 +48,16 @@ function EventoCalendario() {
             })}
           </select>
         </div>
+        <button
+          type="button"
+          className={`btn-adicionar ${isAdmin > 0 ? "" : "hidden"}`}
+          onClick={redirectToCalendario}
+        >
+          Novo Evento
+        </button>
       </div>
 
-      <div
-        className="home-row"
-        style={{ display: eventos.length > 0 ? "" : "none" }}
-      >
+      <div className={`row ${eventos.length > 0 ? "" : "hidden"}`}>
         <table className="table">
           <thead>
             <tr>

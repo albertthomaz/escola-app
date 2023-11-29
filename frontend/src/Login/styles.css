@@ -69,9 +69,11 @@ div.omrs-input-group {
   fill: rgba(19, 19, 21, 0.6);
 }
 
-.omrs-input-underlined > .omrs-input-helper {
+.omrs-input-underlined > .omrs-input-helper,
+.select + .omrs-input-helper {
   font-size: 12px;
   color: #b50706;
+  display: block;
   letter-spacing: 0.0275rem;
   margin: 0.125rem 0.875rem;
 }
@@ -103,6 +105,12 @@ div.omrs-input-group {
   fill: #30afb4;
 }
 
+input[type="datetime-local"]:required:invalid::-webkit-datetime-edit {
+  color: transparent;
+}
+input[type="datetime-local"]:focus::-webkit-datetime-edit {
+  color: black !important;
+}
 /* Extra small devices (portrait phones) */
 
 @media (max-width: 576.99px) {

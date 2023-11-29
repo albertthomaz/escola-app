@@ -1,6 +1,6 @@
 :root {
-  --gray: #34495e;
-  --darkgray: #2c3e50;
+  --gray: #336b6b;
+  --darkgray: #ddefef;
 }
 
 select {
@@ -11,7 +11,7 @@ select {
   flex: 1;
   padding: 0 1em;
   color: #fff;
-  background-color: var(--darkgray);
+  background-color: var(--primary-color);
   background-image: none;
   cursor: pointer;
 }
@@ -35,7 +35,7 @@ select::-ms-expand {
   top: 0;
   right: 0;
   padding: 1em;
-  background-color: #34495e;
+  background-color: #2a9196;
   transition: 0.25s all ease;
   pointer-events: none;
 }
@@ -59,4 +59,13 @@ select::-ms-expand {
   color: #333;
   padding: 10px;
   text-shadow: 1px 1px 1px #fff;
+}
+
+.btn-adicionar {
+  width: 100px !important;
+  height: 4em !important;
+  padding: 10px !important;
+  font-size: 12px !important;
+  margin-left: 10px;
+  margin-right: 10px;
 }

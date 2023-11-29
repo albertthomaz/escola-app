@@ -7,15 +7,15 @@ function Home() {
 
   return (
     <div>
-      <div className="home-row">
+      <div className="row">
         <button type="button" onClick={redirectToCalendario}>
           Calendário Acadêmico
         </button>
       </div>
-      <div className="home-row">
+      <div className="row">
         <button type="button">Teste</button>
       </div>
-      <div className="home-row">
+      <div className="row">
         <button type="button">Teste</button>
       </div>
     </div>

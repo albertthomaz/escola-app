@@ -4,8 +4,7 @@ import Login from "./Login";
 import Header from "./Header";
 import Home from "./Home";
 import EventoCalendario from "./EventoCalendario";
-import MovieInfo from "./MovieInfo";
-import MyList from "./MyList";
+import NovoEventoCalendario from "./EventoCalendario/novo";
 import { getUsuarioLogado } from "./util";
 
 function Routes() {
@@ -31,14 +30,12 @@ function Routes() {
           <Home />
         </Route>
         <Route path="/app/eventos_calendario">
+          <Route path="/app/eventos_calendario/novo">
+            <NovoEventoCalendario />
+          </Route>
           <EventoCalendario />
         </Route>
-        <Route path="/app/filme/:id">
-          <MovieInfo />
-        </Route>
-        <Route path="/app/lista">
-          <MyList />
-        </Route>
+        <Route path="/app/filme/:id"></Route>
         <Route path="/">
           <Redirect to="/app/home" />
         </Route>

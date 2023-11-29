@@ -2,7 +2,6 @@ import { React, useState } from "react";
 import "./styles.css";
 import logomark from "./logomark.png";
 import { authenticate } from "../api";
-import USUARIO_LOGADO from "../util";
 
 function Login() {
   const [form, setForm] = useState({ matricula: "", senha: "" });
@@ -16,13 +15,11 @@ function Login() {
     if (form.matricula && form.senha) {
       authenticate(form)
         .then((response) => {
-          //console.log("response.data :>> ", response.data);
           localStorage.setItem("USUARIO_LOGADO", JSON.stringify(response.data));
           window.location.replace("/app/home");
         })
         .catch((error) => {
           console.log(error);
-          //alert(error.response.data.erro);
         });
     } else {
       setOnceSubmitted(true);
@@ -46,9 +43,9 @@ function Login() {
               type="text"
               required
             />
-            <span className="omrs-input-label">Email</span>
+            <span className="omrs-input-label">Matrícula</span>
             {onceSubmitted && !form.matricula && (
-              <span className="omrs-input-helper">*matricula obrigatória</span>
+              <span className="omrs-input-helper">*matrícula obrigatória</span>
             )}
           </label>
         </div>
