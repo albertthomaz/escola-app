@@ -5,6 +5,8 @@ import Header from "./Header";
 import Home from "./Home";
 import EventoCalendario from "./EventoCalendario";
 import NovoEventoCalendario from "./EventoCalendario/novo";
+import Disciplina from "./Disciplina";
+import Material from "./Material";
 import { getUsuarioLogado } from "./util";
 
 function Routes() {
@@ -14,7 +16,7 @@ function Routes() {
         !window.location.pathname.startsWith("/app") ? (
           <React.Fragment>
             <Header />
-            <Redirect to="/app/catalogo" />
+            <Redirect to="/app/home" />
           </React.Fragment>
         ) : (
           <Header />
@@ -35,7 +37,15 @@ function Routes() {
           </Route>
           <EventoCalendario />
         </Route>
-        <Route path="/app/filme/:id"></Route>
+        <Route path="/app/materiais/:disciplinaId/:id">
+          <Header />
+        </Route>
+        <Route path="/app/materiais/:disciplinaId">
+          <Material />
+        </Route>
+        <Route path="/app/materiais">
+          <Disciplina caminho="materiais" />
+        </Route>
         <Route path="/">
           <Redirect to="/app/home" />
         </Route>

@@ -18,6 +18,14 @@ export function fetchEventos(turmaId) {
   return axios(`${API_URL}/eventos_calendario?turmaId=${turmaId}`);
 }
 
+export function fetchDisciplinas(turmaId) {
+  return axios(`${API_URL}/disciplinas?turmaId=${turmaId}`);
+}
+
+export function fetchMateriais(disciplinaId) {
+  return axios(`${API_URL}/materiais?disciplinaId=${disciplinaId}`);
+}
+
 export function salvarEvento(evento) {
   return axios.post(`${API_URL}/eventos_calendario`, evento);
 }
