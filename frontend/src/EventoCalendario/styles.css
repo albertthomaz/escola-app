@@ -60,12 +60,3 @@ select::-ms-expand {
   padding: 10px;
   text-shadow: 1px 1px 1px #fff;
 }
-
-.btn-adicionar {
-  width: 100px !important;
-  height: 4em !important;
-  padding: 10px !important;
-  font-size: 12px !important;
-  margin-left: 10px;
-  margin-right: 10px;
-}

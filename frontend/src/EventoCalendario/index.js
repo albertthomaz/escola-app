@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchTurmas, fetchEventos } from "../api";
 import { getUsuarioLogado } from "../util";
+import BotaoCustom from "../BotaoCustom";
 import "./styles.css";
 
 function EventoCalendario() {
@@ -48,13 +49,6 @@ function EventoCalendario() {
             })}
           </select>
         </div>
-        <button
-          type="button"
-          className={`btn-adicionar ${isAdmin > 0 ? "" : "hidden"}`}
-          onClick={redirectToCalendario}
-        >
-          Novo Evento
-        </button>
       </div>
 
       <div className={`row ${eventos.length > 0 ? "" : "hidden"}`}>
@@ -80,6 +74,14 @@ function EventoCalendario() {
               })}
           </tbody>
         </table>
+      </div>
+      <div className="row">
+        <BotaoCustom nome="Voltar" redirect="/app/home" />
+        <BotaoCustom
+          nome="Novo Evento"
+          acao={redirectToCalendario}
+          invisivel={!isAdmin}
+        />
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchMateriais } from "../api";
+import BotaoCustom from "../BotaoCustom";
 
 function Material() {
   const [materiais, setMateriais] = useState([]);
@@ -34,6 +35,9 @@ function Material() {
             </div>
           );
         })}
+      <div className="row">
+        <BotaoCustom nome="Voltar" redirect="/app/materiais" />
+      </div>
     </div>
   );
 }

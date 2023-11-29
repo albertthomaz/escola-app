@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchTurmas, fetchDisciplinas } from "../api";
+import BotaoCustom from "../BotaoCustom";
 
 function Disciplina(props) {
   const [turmas, setTurmas] = useState([]);
@@ -58,6 +59,9 @@ function Disciplina(props) {
             </div>
           );
         })}
+      <div className="row">
+        <BotaoCustom nome="Voltar" redirect="/app/home" />
+      </div>
     </div>
   );
 }

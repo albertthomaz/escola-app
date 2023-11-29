@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchTurmas, salvarEvento } from "../api";
+import BotaoCustom from "../BotaoCustom";
 import "./styles.css";
 
 function NovoEventoCalendario() {
@@ -103,13 +104,8 @@ function NovoEventoCalendario() {
       </div>
 
       <div className="row">
-        <button type="button" className={`btn-adicionar`} onClick={voltar}>
-          Voltar
-        </button>
-
-        <button type="button" className={`btn-adicionar`} onClick={salvar}>
-          Salvar
-        </button>
+        <BotaoCustom nome="Voltar" redirect="/app/eventos_calendario" />
+        <BotaoCustom nome="Salvar" primario acao={salvar} />
       </div>
     </div>
   );

@@ -32,10 +32,10 @@ function Routes() {
         <Route path="/app/home">
           <Home />
         </Route>
+        <Route path="/app/eventos_calendario/novo">
+          <NovoEventoCalendario />
+        </Route>
         <Route path="/app/eventos_calendario">
-          <Route path="/app/eventos_calendario/novo">
-            <NovoEventoCalendario />
-          </Route>
           <EventoCalendario />
         </Route>
         <Route path="/app/materiais/:disciplinaId/:id">
