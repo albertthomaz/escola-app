@@ -7,6 +7,7 @@ import EventoCalendario from "./EventoCalendario";
 import NovoEventoCalendario from "./EventoCalendario/novo";
 import Disciplina from "./Disciplina";
 import Material from "./Material";
+import MaterialDetalhe from "./Material/detalhe";
 import { getUsuarioLogado } from "./util";
 
 function Routes() {
@@ -38,7 +39,7 @@ function Routes() {
           <EventoCalendario />
         </Route>
         <Route path="/app/materiais/:disciplinaId/:id">
-          <Header />
+          <MaterialDetalhe />
         </Route>
         <Route path="/app/materiais/:disciplinaId">
           <Material />

@@ -20,3 +20,8 @@
 .hidden {
   display: none;
 }
+
+.subtitulo {
+  margin-bottom: 0;
+  color: var(--primary-color);
+}

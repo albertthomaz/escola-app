@@ -12,7 +12,7 @@ function Material() {
       .catch(() => {
         alert("Erro ao listar materiais");
       });
-  });
+  }, [disciplinaId]);
 
   const redirect = (id) => {
     window.location.href = `/app/materiais/${disciplinaId}/${id}`;

@@ -23,7 +23,6 @@ function Disciplina(props) {
   };
 
   const redirect = (disciplinaId) => {
-    disciplinaId = 3;
     window.location.href = `/app/${props.caminho}/${disciplinaId}`;
   };
 

@@ -11,6 +11,7 @@ function Home() {
 
   return (
     <div>
+      <div className="row"></div>
       <div className="row">
         <button type="button" onClick={redirectToCalendario}>
           Calendário Acadêmico
