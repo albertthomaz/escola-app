@@ -1,5 +1,6 @@
 package com.solus.escolaapp.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
@@ -15,6 +16,7 @@ public class MaterialComplementar {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String descricao;
+    @Column(length = 100000)
     private String conteudo;
 
     @ManyToOne

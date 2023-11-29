@@ -31,7 +31,7 @@ INSERT INTO evento_calendario(id_turma, descricao, data) VALUES (1, 'Prova de Bi
 INSERT INTO evento_calendario(id_turma, descricao, data) VALUES (2, 'Prova de Historia', '2023-11-01 08:00:00');
 INSERT INTO evento_calendario(id_turma, descricao, data) VALUES (2, 'Prova de Biologia', '2023-12-02 08:00:00');
 
-INSERT INTO material_complementar(id_disciplina, descricao, conteudo) VALUES (4, 'Segunda Guerra Mundial', 'TESTE_MATERIAL_COMPLEMENTAR');
+INSERT INTO material_complementar(id_disciplina, descricao, conteudo) VALUES (4, 'Segunda Guerra Mundial', '<p>O conflito foi desencadeado pelas ambições expansionistas de Adolf Hitler na Europa, o expansionismo japonês na Ásia e as tensões resultantes das consequências da Primeira Guerra Mundial, como o Tratado de Versalhes.</p><p>Durante a guerra, ocorreram batalhas cruciais em vários teatros de operações, incluindo a Europa, o Pacífico, o Norte da África e outros lugares, com o uso extensivo de novas tecnologias militares, como tanques, aviões e armas nucleares.</p><p>O conflito teve um custo humano imenso, com milhões de mortes e devastação em larga escala em muitas partes do mundo. A guerra chegou ao fim em 1945, após a rendição do Japão, marcando um período de reconstrução e reorganização global pós-guerra.</p>');
 
 INSERT INTO atividade(id_disciplina, id_aluno, descricao, prazo, resposta, nota) VALUES (4, 1, 'Segunda Guerra Mundial', '2023-10-29 22:00:00', 'TESTE_ATIVIDADE', NULL);
 
