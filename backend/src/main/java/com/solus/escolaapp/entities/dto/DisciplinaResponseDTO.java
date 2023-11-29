@@ -1,5 +1,5 @@
 package com.solus.escolaapp.entities.dto;
 
-public record DisciplinaResponseDTO(String descricao) {
+public record DisciplinaResponseDTO(long id, String descricao) {
 
 }

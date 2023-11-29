@@ -22,7 +22,7 @@ public class DisciplinaController {
 
         var result = disciplinas
                 .stream()
-                .map(x -> new DisciplinaResponseDTO(x.getNome()))
+                .map(x -> new DisciplinaResponseDTO(x.getId(), x.getNome()))
                 .toList();
         return result;
     }
