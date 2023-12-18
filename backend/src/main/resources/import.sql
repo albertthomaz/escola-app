@@ -33,7 +33,8 @@ INSERT INTO evento_calendario(id_turma, descricao, data) VALUES (2, 'Prova de Bi
 
 INSERT INTO material_complementar(id_disciplina, descricao, conteudo) VALUES (4, 'Segunda Guerra Mundial', '<p>O conflito foi desencadeado pelas ambições expansionistas de Adolf Hitler na Europa, o expansionismo japonês na Ásia e as tensões resultantes das consequências da Primeira Guerra Mundial, como o Tratado de Versalhes.</p><p>Durante a guerra, ocorreram batalhas cruciais em vários teatros de operações, incluindo a Europa, o Pacífico, o Norte da África e outros lugares, com o uso extensivo de novas tecnologias militares, como tanques, aviões e armas nucleares.</p><p>O conflito teve um custo humano imenso, com milhões de mortes e devastação em larga escala em muitas partes do mundo. A guerra chegou ao fim em 1945, após a rendição do Japão, marcando um período de reconstrução e reorganização global pós-guerra.</p>');
 
-INSERT INTO atividade(id_disciplina, id_aluno, descricao, prazo, resposta, nota) VALUES (4, 1, 'Segunda Guerra Mundial', '2023-10-29 22:00:00', 'TESTE_ATIVIDADE', NULL);
+INSERT INTO atividade(id_disciplina, descricao, prazo) VALUES (4, 'Redação Segunda Guerra Mundial', '2023-10-29 22:00:00');
+INSERT INTO atividade_resposta(id_atividade, id_aluno, resposta, nota) VALUES (1, 1, 'a segunda guerra mundial foi..', NULL);
 
 --SELECT * FROM DISCIPLINA;
 --SELECT * FROM PROFESSOR;
@@ -43,3 +44,4 @@ INSERT INTO atividade(id_disciplina, id_aluno, descricao, prazo, resposta, nota)
 --SELECT * FROM EVENTO_CALENDARIO;
 --SELECT * FROM MATERIAL_COMPLEMENTAR;
 --SELECT * FROM ATIVIDADE;
+--SELECT * FROM ATIVIDADE_RESPOSTA;

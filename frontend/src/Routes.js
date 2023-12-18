@@ -9,6 +9,8 @@ import Disciplina from "./Disciplina";
 import Material from "./Material";
 import MaterialDetalhe from "./Material/detalhe";
 import { getUsuarioLogado } from "./util";
+import Atividade from "./Atividade";
+import AtividadeDetalhe from "./Atividade/detalhe";
 
 function Routes() {
   return (
@@ -46,6 +48,15 @@ function Routes() {
         </Route>
         <Route path="/app/materiais">
           <Disciplina caminho="materiais" />
+        </Route>
+        <Route path="/app/atividades/:disciplinaId/:id">
+          <AtividadeDetalhe />
+        </Route>
+        <Route path="/app/atividades/:disciplinaId">
+          <Atividade />
+        </Route>
+        <Route path="/app/atividades">
+          <Disciplina caminho="atividades" />
         </Route>
         <Route path="/">
           <Redirect to="/app/home" />

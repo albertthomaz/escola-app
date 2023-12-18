@@ -9,6 +9,10 @@ function Home() {
     window.location.href = "/app/materiais";
   };
 
+  const redirectToAtividades = () => {
+    window.location.href = "/app/atividades";
+  };
+
   return (
     <div>
       <div className="row"></div>
@@ -20,8 +24,8 @@ function Home() {
       <div className="row" onClick={redirectToMateriais}>
         <button type="button">Conteúdo Escolar</button>
       </div>
-      <div className="row">
-        <button type="button">Teste</button>
+      <div className="row" onClick={redirectToAtividades}>
+        <button type="button">Atividades</button>
       </div>
     </div>
   );

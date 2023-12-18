@@ -30,6 +30,14 @@ export function fetchMateriais(disciplinaId) {
   return axios(`${API_URL}/materiais?disciplinaId=${disciplinaId}`);
 }
 
+export function fetchAtividades(disciplinaId) {
+  return axios(`${API_URL}/atividades?disciplinaId=${disciplinaId}`);
+}
+
+export function fetchAtividadesResposta(atividadeId) {
+  return axios(`${API_URL}/atividades?atividadeId=${atividadeId}`);
+}
+
 export function getMaterial(id) {
   return axios(`${API_URL}/materiais/${id}`);
 }
