@@ -1,0 +1,80 @@
+@page "/"
+@page "/login"
+@rendermode InteractiveServer
+@using System.ComponentModel.DataAnnotations
+@using EscolaApp.Models
+@using EscolaApp.Services
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@inject AlunoService AlunoService
+@inject ProtectedSessionStorage SessionStorage
+@inject NavigationManager Navigation
+
+<EditForm Model="@_loginModel" OnValidSubmit="@HandleLogin" FormName="Login">
+    <DataAnnotationsValidator />
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h4 class="text-center mb-4">Login</h4>
+                        <div class="form-group mb-3">
+                            <label>Matricula</label>
+                            <InputText @bind-Value="_loginModel.Matricula" class="form-control" />
+                            <ValidationMessage For="@(() => _loginModel.Matricula)" />
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label>Senha</label>
+                            <InputText @bind-Value="_loginModel.Senha" type="password" class="form-control" />
+                            <ValidationMessage For="@(() => _loginModel.Senha)" />
+                        </div>
+                        
+                        @if (!string.IsNullOrEmpty(_errorMessage))
+                        {
+                            <div class="alert alert-danger">@_errorMessage</div>
+                        }
+
+                        <button type="submit" class="btn btn-primary w-100">Entrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+    private readonly LoginModel _loginModel = new();
+    private string? _errorMessage;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authenticatedUser = (await SessionStorage.GetAsync<Aluno?>("authenticated_user")).Value;
+        
+        if(authenticatedUser != null)
+            Navigation.NavigateTo("/calendario", forceLoad: true);
+    }
+
+    private async Task HandleLogin()
+    {
+        var user = await AlunoService.GetAluno(_loginModel.Matricula!, _loginModel.Senha!);
+        
+        if (user != null)
+        {
+            await SessionStorage.SetAsync("authenticated_user", user);
+            Navigation.NavigateTo("/calendario");
+        }
+        else
+        {
+            _errorMessage = "Matrícula ou senha inválida.";
+        }
+    }
+
+    private class LoginModel
+    {
+        [Required(ErrorMessage = "A matrícula é obrigatória.")]
+        public string? Matricula { get; set; }
+
+        [Required(ErrorMessage = "A senha é obrigatória.")]
+        public string? Senha { get; set; }
+    }
+}

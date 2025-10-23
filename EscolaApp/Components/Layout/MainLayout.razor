@@ -1,0 +1,47 @@
+﻿@using EscolaApp.Models
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@inherits LayoutComponentBase
+@inject ProtectedSessionStorage SessionStorage
+@inject NavigationManager NavigationManager
+@inject IJSRuntime Js
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu/>
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <span>Olá, @_authenticatedUser?.Nome.</span>
+            <button type="button" @onclick="Logout" class="btn btn-link">Sair</button>
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+<div id="blazor-error-ui" data-nosnippet>
+    An unhandled error has occurred.
+    <a href="." class="reload">Reload</a>
+    <span class="dismiss">🗙</span>
+</div>
+
+@code {
+    private Aluno? _authenticatedUser;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _authenticatedUser = (await SessionStorage.GetAsync<Aluno?>("authenticated_user")).Value;
+        
+        if(_authenticatedUser == null && !NavigationManager.Uri.ToLower().Contains("/login"))
+            NavigationManager.NavigateTo("/login", forceLoad: true);
+    }
+    
+    private async Task Logout()
+    {
+        await SessionStorage.DeleteAsync("authenticated_user");
+        NavigationManager.NavigateTo("/login", forceLoad: true);
+    }
+}

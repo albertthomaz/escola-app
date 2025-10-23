@@ -1,0 +1,43 @@
+@page "/Notas"
+@layout Layout.MainLayout
+@using EscolaApp.Models
+@using EscolaApp.Services
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@inject ProtectedSessionStorage SessionStorage
+@inject AtividadeService AtividadeService;
+
+<h3 class="mb-4">📚 Notas do Aluno</h3>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Disciplina</th>
+        <th>Atividade</th>
+        <th>Entrega</th>
+        <th>Nota</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var alunoAtividade in _alunoAtividades)
+    {
+        <tr>
+            <td>@alunoAtividade.Atividade.Disciplina.Nome</td>
+            <td>@alunoAtividade.Atividade.Nome</td>
+            <td>@alunoAtividade.Entrega?.ToString("dd/MM/yyyy hh:mm:ss")</td>
+            <td>@alunoAtividade.Nota</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@code {
+    private Aluno? _authenticatedUser;
+    private List<AlunoAtividade> _alunoAtividades = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        _authenticatedUser = (await SessionStorage.GetAsync<Aluno>("authenticated_user")).Value!;
+        _alunoAtividades = await AtividadeService.GetAtividades(_authenticatedUser.Id);
+    }
+
+}

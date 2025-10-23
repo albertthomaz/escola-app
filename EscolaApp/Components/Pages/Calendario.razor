@@ -1,0 +1,37 @@
+@page "/calendario"
+@using EscolaApp.Services
+@layout Layout.MainLayout
+@inject IJSRuntime Js
+@inject AtividadeService AtividadeService
+
+<div id="calendar"></div>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var eventList = (await AtividadeService.GetAtividades()).Select(x => new
+            {
+                title = $"{x.Disciplina.Nome}: {x.Nome}",
+                start = x.Prazo.ToString("yyyy-MM-dd"),
+                color = GetColor(x.Disciplina.Nome)
+            });
+
+            await Js.InvokeVoidAsync("initializeCalendar", eventList);
+        }
+    }
+
+    private static string GetColor(string disciplina)
+        => disciplina switch
+            {
+                "História"          => "#8B4513",  // marrom
+                "Matemática"        => "#1E90FF",  // azul
+                "Geografia"         => "#228B22",  // verde
+                "Física"            => "#FFD700",  // dourado
+                "Biologia"          => "#32CD32",  // verde limão
+                "Química"           => "#FF4500",  // laranja avermelhado
+                "Língua Portuguesa"  => "#800080",  // roxo
+                _                   => "#808080"   // cinza para desconhecidos
+            };
+}

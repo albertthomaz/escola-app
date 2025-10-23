@@ -1,0 +1,82 @@
+@page "/atividade/{AtividadeId:long}"
+@layout Layout.MainLayout
+@rendermode InteractiveServer
+@using System.ComponentModel.DataAnnotations
+@using EscolaApp.Models
+@using EscolaApp.Services
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@inject AtividadeService AtividadeService
+@inject ProtectedSessionStorage SessionStorage
+@inject NavigationManager Navigation
+
+@if (_atividade == null)
+{
+    <p>
+        <em>Carregando...</em>
+    </p>
+}
+else
+{
+    <EditForm Model="@_entregaModel" OnValidSubmit="@HandleEntrega" FormName="Login">
+        <DataAnnotationsValidator/>
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <h4 class="text-center mb-4">Atividade de @_atividade!.Disciplina.Nome</h4>
+                            <div class="form-group mb-3">
+                                <label>Nome</label>
+                                <input class="form-control" type="text" placeholder="@_atividade.Nome" disabled>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label>Descrição</label>
+                                <input class="form-control" type="text" placeholder="@_atividade.Descricao" disabled>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label>Resposta</label>
+                                <InputTextArea @bind-Value="_entregaModel.Resposta" rows="6" class="form-control"/>
+                                <ValidationMessage For="@(() => _entregaModel.Resposta)"/>
+                            </div>
+
+                            @*@if (!string.IsNullOrEmpty(_errorMessage))
+                        {
+                            <div class="alert alert-danger">@_errorMessage</div>
+                        }*@
+
+                            <button type="submit" class="btn btn-primary w-100">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </EditForm>
+}
+
+@code {
+    [Parameter] public long AtividadeId { get; set; }
+    private Aluno? _aluno;
+    private Atividade? _atividade;
+    private readonly EntregaModel _entregaModel = new();
+    //private string? _errorMessage;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _aluno = (await SessionStorage.GetAsync<Aluno>("authenticated_user")).Value!;
+        _atividade = await AtividadeService.GetById(AtividadeId);
+    }
+
+    private async Task HandleEntrega()
+    {
+        await AtividadeService.EnviarAtividade(_atividade!, _aluno!, _entregaModel.Resposta);
+        Navigation.NavigateTo($"/disciplinas/{_atividade!.Disciplina.Id}");
+    }
+
+    private class EntregaModel
+    {
+        [Required(ErrorMessage = "A resposta é obrigatória.")]
+        public string? Resposta { get; set; }
+    }
+
+}

@@ -1,0 +1,70 @@
+﻿@page "/disciplinas/{DisciplinaId:long}"
+@using EscolaApp.Models
+@using EscolaApp.Services
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@inject DisciplinaService DisciplinaService
+@inject ProtectedSessionStorage SessionStorage
+@layout Layout.MainLayout
+@attribute [StreamRendering]
+
+<PageTitle>Atividades</PageTitle>
+
+<h1>@_disciplina?.Nome</h1>
+<p>Lista de atividades</p>
+
+@if (_disciplina == null)
+{
+    <p>
+        <em>Carregando...</em>
+    </p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Prazo</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var atividade in _disciplina.Atividades
+                      .OrderBy(x => x.Entregas?.FirstOrDefault()?.Entrega ?? DateTime.MaxValue)
+                      .ThenBy(x => x.Prazo)
+                 )
+        {
+            <tr>
+                <td>@atividade.Nome</td>
+                <td>@atividade.Descricao</td>
+                <td>@atividade.Prazo.ToString("dd/MM/yyyy")</td>
+                <td>@if (@atividade.Entregas.Any())
+                    {
+                        <span>Entregue ✔️</span>
+                    }
+                    else
+                    {
+                        <a class="btn btn-primary mt-auto" href="@($"/atividade/{atividade.Id}")">
+                            Entregar
+                        </a>
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+    [Parameter] public long DisciplinaId { get; set; }
+    private Aluno? _authenticatedUser;
+    private Disciplina? _disciplina;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _authenticatedUser = (await SessionStorage.GetAsync<Aluno>("authenticated_user")).Value!;
+        _disciplina = await DisciplinaService.GetDisciplina(DisciplinaId, _authenticatedUser.Id);
+    }
+
+}
